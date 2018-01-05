@@ -1,10 +1,9 @@
 package com.mygame.make;
 
-import com.mygame.view.Display;
-
 public class Main {
 
     public static void main(String[] args) {
-        new Game("Title!", 400, 400);
+        Game game = new Game("Tile Game!", 640, 360);
+        game.start();
     }
 }
