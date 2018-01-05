@@ -1,8 +1,10 @@
 package com.mygame.make;
 
+import com.mygame.view.Display;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new Display("Title!", 300, 300);
     }
 }
