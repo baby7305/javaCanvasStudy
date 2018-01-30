@@ -2,6 +2,9 @@ package com.mygame.make;
 
 import com.mygame.view.Display;
 
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
 /**
  * Created by Administrator on 2018/1/5.
  */
@@ -11,14 +14,16 @@ public class Game implements Runnable {
 	public int width, height;
 	public String title;
 
-	private boolean running;
+	private boolean running = false;
 	private Thread thread;
+
+	private BufferStrategy bs;
+	private Graphics g;
 
 	public Game(String title, int width, int height){
 		this.width = width;
 		this.height = height;
 		this.title = title;
-		running = false;
 	}
 
 	private void init(){
@@ -30,7 +35,19 @@ public class Game implements Runnable {
 	}
 
 	private void render(){
+		bs = display.getCanvas().getBufferStrategy();
+		if(bs == null){
+			display.getCanvas().createBufferStrategy(3);
+			return;
+		}
+		g = bs.getDrawGraphics();
+		//Draw Here!
 
+		g.fillRect(0, 0, width, height);
+
+		//End Drawing!
+		bs.show();
+		g.dispose();
 	}
 
 	public void run(){

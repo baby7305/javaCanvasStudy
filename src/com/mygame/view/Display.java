@@ -7,11 +7,11 @@ import java.awt.*;
  * Created by Administrator on 2018/1/4.
  */
 public class Display {
-	private JFrame jFrame;
+	private JFrame frame;
 	private Canvas canvas;
+
 	private String title;
-	private int width;
-	private int height;
+	private int width, height;
 
 	public Display(String title, int width, int height) {
 		this.title = title;
@@ -21,20 +21,24 @@ public class Display {
 		createDisplay();
 	}
 
-	private void createDisplay(){
-		jFrame = new JFrame(title);
-		jFrame.setSize(width, height);
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setResizable(false);
-		jFrame.setLocationRelativeTo(null);
-		jFrame.setVisible(true);
+	private void createDisplay() {
+		frame = new JFrame(title);
+		frame.setSize(width, height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 
-		jFrame.add(canvas);
-		jFrame.pack();
+		frame.add(canvas);
+		frame.pack();
+	}
+
+	public Canvas getCanvas() {
+		return canvas;
 	}
 }
