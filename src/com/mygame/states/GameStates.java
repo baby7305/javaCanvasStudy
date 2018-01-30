@@ -1,6 +1,6 @@
 package com.mygame.states;
 
-import com.mygame.gfx.Assets;
+import com.mygame.entities.creatures.Player;
 
 import java.awt.*;
 
@@ -8,17 +8,20 @@ import java.awt.*;
  * Created by Administrator on 2018/1/30.
  */
 public class GameStates extends States {
-//	public GameState(){
-//
-//	}
+	private Player player;
+
+	public GameStates(){
+		player = new Player(100, 100);
+	}
 
 	@Override
 	public void tick() {
-
+		player.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.dirt, 0, 0, null);
+		player.render(g);
 	}
+
 }
