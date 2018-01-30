@@ -1,6 +1,7 @@
 package com.mygame.make;
 
 import com.mygame.gfx.Assets;
+import com.mygame.input.KeyManager;
 import com.mygame.states.GameStates;
 import com.mygame.states.MenuStates;
 import com.mygame.states.States;
@@ -28,22 +29,29 @@ public class Game implements Runnable {
 	private States gameState;
 	private States menuState;
 
+	//Input
+	private KeyManager keyManager;
+
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		keyManager = new KeyManager();
 	}
 
 	private void init() {
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
 
-		gameState = new GameStates();
-		menuState = new MenuStates();
+		gameState = new GameStates(this);
+		menuState = new MenuStates(this);
 		States.setState(gameState);
 	}
 
 	private void tick() {
+		keyManager.tick();
+
 		if (States.getState() != null)
 			States.getState().tick();
 	}
@@ -101,6 +109,10 @@ public class Game implements Runnable {
 
 		stop();
 
+	}
+
+	public KeyManager getKeyManager() {
+		return keyManager;
 	}
 
 	public synchronized void start() {

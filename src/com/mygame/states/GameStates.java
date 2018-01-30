@@ -1,6 +1,7 @@
 package com.mygame.states;
 
 import com.mygame.entities.creatures.Player;
+import com.mygame.make.Game;
 
 import java.awt.*;
 
@@ -10,8 +11,9 @@ import java.awt.*;
 public class GameStates extends States {
 	private Player player;
 
-	public GameStates(){
-		player = new Player(100, 100);
+	public GameStates(Game game) {
+		super(game);
+		player = new Player(game, 100, 100);
 	}
 
 	@Override
