@@ -1,6 +1,7 @@
 package com.mygame.make;
 
 import com.mygame.gfx.ImageLoader;
+import com.mygame.gfx.SpriteSheet;
 import com.mygame.view.Display;
 
 import java.awt.*;
@@ -23,6 +24,7 @@ public class Game implements Runnable {
 	private Graphics g;
 
 	private BufferedImage testImage;
+	private SpriteSheet sheet;
 
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -32,7 +34,8 @@ public class Game implements Runnable {
 
 	private void init() {
 		display = new Display(title, width, height);
-		testImage = ImageLoader.loadImage("/res/textures/test.png");
+		testImage = ImageLoader.loadImage("/res/textures/sheet.png");
+		sheet = new SpriteSheet(testImage);
 	}
 
 	private void tick() {
@@ -49,7 +52,7 @@ public class Game implements Runnable {
 		//Clear Screen
 		g.clearRect(0, 0, width, height);
 		//Draw Here!
-		g.drawImage(testImage, 20, 20, null);
+		g.drawImage(sheet.crop(32, 0, 32, 32), 5, 5, null);
 
 		//End Drawing!
 		bs.show();
