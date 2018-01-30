@@ -1,12 +1,10 @@
 package com.mygame.make;
 
-import com.mygame.gfx.ImageLoader;
-import com.mygame.gfx.SpriteSheet;
+import com.mygame.gfx.Assets;
 import com.mygame.view.Display;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by Administrator on 2018/1/5.
@@ -23,9 +21,6 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 
-	private BufferedImage testImage;
-	private SpriteSheet sheet;
-
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -34,8 +29,7 @@ public class Game implements Runnable {
 
 	private void init() {
 		display = new Display(title, width, height);
-		testImage = ImageLoader.loadImage("/res/textures/sheet.png");
-		sheet = new SpriteSheet(testImage);
+		Assets.init();
 	}
 
 	private void tick() {
@@ -52,7 +46,8 @@ public class Game implements Runnable {
 		//Clear Screen
 		g.clearRect(0, 0, width, height);
 		//Draw Here!
-		g.drawImage(sheet.crop(32, 0, 32, 32), 5, 5, null);
+
+		g.drawImage(Assets.grass, 10, 10, null);
 
 		//End Drawing!
 		bs.show();
