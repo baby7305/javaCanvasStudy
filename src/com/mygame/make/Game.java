@@ -20,23 +20,23 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 
-	public Game(String title, int width, int height){
+	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
 	}
 
-	private void init(){
+	private void init() {
 		display = new Display(title, width, height);
 	}
 
-	private void tick(){
+	private void tick() {
 
 	}
 
-	private void render(){
+	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
-		if(bs == null){
+		if (bs == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
@@ -49,17 +49,18 @@ public class Game implements Runnable {
 		g.fillRect(10, 50, 50, 70);
 		g.setColor(Color.green);
 		g.fillRect(0, 0, 10, 10);
+		g.drawRect(10, 10, 20, 20);
 
 		//End Drawing!
 		bs.show();
 		g.dispose();
 	}
 
-	public void run(){
+	public void run() {
 
 		init();
 
-		while(running){
+		while (running) {
 			tick();
 			render();
 		}
@@ -68,16 +69,16 @@ public class Game implements Runnable {
 
 	}
 
-	public synchronized void start(){
-		if(running)
+	public synchronized void start() {
+		if (running)
 			return;
 		running = true;
 		thread = new Thread(this);
 		thread.start();
 	}
 
-	public synchronized void stop(){
-		if(!running)
+	public synchronized void stop() {
+		if (!running)
 			return;
 		running = false;
 		try {
