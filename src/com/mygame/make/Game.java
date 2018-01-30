@@ -2,6 +2,7 @@ package com.mygame.make;
 
 import com.mygame.gfx.Assets;
 import com.mygame.states.GameStates;
+import com.mygame.states.MenuStates;
 import com.mygame.states.States;
 import com.mygame.view.Display;
 
@@ -24,7 +25,8 @@ public class Game implements Runnable {
 	private Graphics g;
 
 	//States
-	private States gameStates;
+	private States gameState;
+	private States menuState;
 
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -36,8 +38,9 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		Assets.init();
 
-		gameStates = new GameStates();
-		States.setState(gameStates);
+		gameState = new GameStates();
+		menuState = new MenuStates();
+		States.setState(gameState);
 	}
 
 	private void tick() {
