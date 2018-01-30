@@ -1,6 +1,8 @@
 package com.mygame.make;
 
 import com.mygame.gfx.Assets;
+import com.mygame.states.GameStates;
+import com.mygame.states.States;
 import com.mygame.view.Display;
 
 import java.awt.*;
@@ -21,6 +23,9 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 
+	//States
+	private States gameStates;
+
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -30,12 +35,14 @@ public class Game implements Runnable {
 	private void init() {
 		display = new Display(title, width, height);
 		Assets.init();
+
+		gameStates = new GameStates();
+		States.setState(gameStates);
 	}
 
-	int x = 0;
-
 	private void tick() {
-		x += 1;
+		if (States.getState() != null)
+			States.getState().tick();
 	}
 
 	private void render() {
@@ -49,7 +56,8 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//Draw Here!
 
-		g.drawImage(Assets.grass, x, 10, null);
+		if (States.getState() != null)
+			States.getState().render(g);
 
 		//End Drawing!
 		bs.show();
