@@ -2,6 +2,7 @@ package com.mygame.states;
 
 import com.mygame.entities.creatures.Player;
 import com.mygame.make.Game;
+import com.mygame.tiles.Tiles;
 
 import java.awt.*;
 
@@ -24,6 +25,7 @@ public class GameStates extends States {
 	@Override
 	public void render(Graphics g) {
 		player.render(g);
+		Tiles.tiles[0].render(g, 0, 0);
 	}
 
 }
