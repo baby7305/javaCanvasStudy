@@ -1,7 +1,7 @@
 package com.mygame.states;
 
 import com.mygame.entities.creatures.Player;
-import com.mygame.make.Game;
+import com.mygame.make.Handler;
 import com.mygame.worlds.World;
 
 import java.awt.*;
@@ -13,11 +13,11 @@ public class GameStates extends States {
 	private Player player;
 	private World world;
 
-	public GameStates(Game game) {
-		super(game);
-		player = new Player(game, 100, 100);
-		world = new World(game, "res/worlds/world1.txt");
-		game.getGameCamera().move(0, 0);
+	public GameStates(Handler handler){
+		super(handler);
+		world = new World(handler, "res/worlds/world1.txt");
+		handler.setWorld(world);
+		player = new Player(handler, 100, 100);
 	}
 
 	@Override
