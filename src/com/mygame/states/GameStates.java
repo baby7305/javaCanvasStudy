@@ -2,7 +2,7 @@ package com.mygame.states;
 
 import com.mygame.entities.creatures.Player;
 import com.mygame.make.Game;
-import com.mygame.tiles.Tiles;
+import com.mygame.worlds.World;
 
 import java.awt.*;
 
@@ -11,21 +11,24 @@ import java.awt.*;
  */
 public class GameStates extends States {
 	private Player player;
+	private World world;
 
-	public GameStates(Game game) {
+	public GameStates(Game game){
 		super(game);
 		player = new Player(game, 100, 100);
+		world = new World("");
 	}
 
 	@Override
 	public void tick() {
+		world.tick();
 		player.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
+		world.render(g);
 		player.render(g);
-		Tiles.tiles[0].render(g, 0, 0);
 	}
 
 }
