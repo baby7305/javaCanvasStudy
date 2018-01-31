@@ -17,7 +17,7 @@ public class Player extends Creature {
 	public void tick() {
 		getInput();
 		move();
-		//game.getGameCamera().centerOnEntity(this);
+		game.getGameCamera().centerOnEntity(this);
 	}
 
 	private void getInput(){
