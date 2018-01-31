@@ -13,10 +13,10 @@ public class GameStates extends States {
 	private Player player;
 	private World world;
 
-	public GameStates(Game game){
+	public GameStates(Game game) {
 		super(game);
 		player = new Player(game, 100, 100);
-		world = new World("");
+		world = new World("res/worlds/world1.txt");
 	}
 
 	@Override
