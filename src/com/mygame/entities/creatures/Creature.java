@@ -1,6 +1,7 @@
 package com.mygame.entities.creatures;
 
 import com.mygame.entities.Entity;
+import com.mygame.make.Game;
 
 /**
  * Created by Administrator on 2018/1/30.
@@ -15,8 +16,8 @@ public abstract class Creature extends Entity{
 	protected float speed;
 	protected float xMove, yMove;
 
-	public Creature(float x, float y, int width, int height) {
-		super(x, y, width, height);
+	public Creature(Game game, float x, float y, int width, int height) {
+		super(game, x, y, width, height);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;

@@ -1,5 +1,6 @@
 package com.mygame.worlds;
 
+import com.mygame.make.Game;
 import com.mygame.tiles.Tiles;
 import com.mygame.utils.Utils;
 
@@ -9,11 +10,13 @@ import java.awt.*;
  * Created by Administrator on 2018/1/31.
  */
 public class World {
+	private Game game;
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
 
-	public World(String path) {
+	public World(Game game, String path) {
+		this.game = game;
 		loadWorld(path);
 	}
 
@@ -25,6 +28,8 @@ public class World {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				getTile(x, y).render(g, x * Tiles.TILEWIDTH, y * Tiles.TILEHEIGHT);
+//				getTile(x, y).render(g, (int) (x * Tiles.TILEWIDTH - game.getGameCamera().getxOffset()),
+//						(int) (y * Tiles.TILEHEIGHT - game.getGameCamera().getyOffset()));
 			}
 		}
 	}
