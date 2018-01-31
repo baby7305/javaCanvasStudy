@@ -27,9 +27,9 @@ public class World {
 	public void render(Graphics g) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				getTile(x, y).render(g, x * Tiles.TILEWIDTH, y * Tiles.TILEHEIGHT);
-//				getTile(x, y).render(g, (int) (x * Tiles.TILEWIDTH - game.getGameCamera().getxOffset()),
-//						(int) (y * Tiles.TILEHEIGHT - game.getGameCamera().getyOffset()));
+//				getTile(x, y).render(g, x * Tiles.TILEWIDTH, y * Tiles.TILEHEIGHT);
+				getTile(x, y).render(g, (int) (x * Tiles.TILEWIDTH - game.getGameCamera().getxOffset()),
+						(int) (y * Tiles.TILEHEIGHT - game.getGameCamera().getyOffset()));
 			}
 		}
 	}

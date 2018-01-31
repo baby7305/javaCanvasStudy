@@ -17,12 +17,14 @@ public class GameStates extends States {
 		super(game);
 		player = new Player(game, 100, 100);
 		world = new World(game, "res/worlds/world1.txt");
+		game.getGameCamera().move(0, 0);
 	}
 
 	@Override
 	public void tick() {
 		world.tick();
 		player.tick();
+		game.getGameCamera().move(1, 1);
 	}
 
 	@Override
