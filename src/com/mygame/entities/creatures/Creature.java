@@ -2,11 +2,12 @@ package com.mygame.entities.creatures;
 
 import com.mygame.entities.Entity;
 import com.mygame.make.Handler;
+import com.mygame.tiles.Tiles;
 
 /**
  * Created by Administrator on 2018/1/30.
  */
-public abstract class Creature extends Entity{
+public abstract class Creature extends Entity {
 	public static final int DEFAULT_HEALTH = 10;
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 64,
@@ -24,9 +25,49 @@ public abstract class Creature extends Entity{
 		yMove = 0;
 	}
 
-	public void move(){
-		x += xMove;
-		y += yMove;
+	public void move() {
+		moveX();
+		moveY();
+	}
+
+	public void moveX() {
+		if (xMove > 0) {//Moving right
+			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tiles.TILEWIDTH;
+
+			if (!collisionWithTile(tx, (int) (y + bounds.y) / Tiles.TILEHEIGHT) &&
+					!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tiles.TILEHEIGHT)) {
+				x += xMove;
+			}
+		} else if (xMove < 0) {//Moving left
+			int tx = (int) (x + xMove + bounds.x) / Tiles.TILEWIDTH;
+
+			if (!collisionWithTile(tx, (int) (y + bounds.y) / Tiles.TILEHEIGHT) &&
+					!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tiles.TILEHEIGHT)) {
+				x += xMove;
+			}
+		}
+	}
+
+	public void moveY() {
+		if (yMove < 0) {//Up
+			int ty = (int) (y + yMove + bounds.y) / Tiles.TILEHEIGHT;
+
+			if (!collisionWithTile((int) (x + bounds.x) / Tiles.TILEWIDTH, ty) &&
+					!collisionWithTile((int) (x + bounds.x + bounds.width) / Tiles.TILEWIDTH, ty)) {
+				y += yMove;
+			}
+		} else if (yMove > 0) {//Down
+			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tiles.TILEHEIGHT;
+
+			if (!collisionWithTile((int) (x + bounds.x) / Tiles.TILEWIDTH, ty) &&
+					!collisionWithTile((int) (x + bounds.x + bounds.width) / Tiles.TILEWIDTH, ty)) {
+				y += yMove;
+			}
+		}
+	}
+
+	protected boolean collisionWithTile(int x, int y) {
+		return handler.getWorld().getTile(x, y).isSolid();
 	}
 
 	//GETTERS SETTERS
