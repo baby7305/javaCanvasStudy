@@ -39,6 +39,9 @@ public class World {
 	}
 
 	public Tiles getTile(int x, int y) {
+		if (x < 0 || y < 0 || x >= width || y >= height)
+			return Tiles.grassTile;
+
 		Tiles t = Tiles.tiles[tiles[x][y]];
 		if (t == null)
 			return Tiles.dirtTile;
