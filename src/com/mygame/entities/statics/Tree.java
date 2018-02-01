@@ -1,4 +1,4 @@
-package com.mygame.statics;
+package com.mygame.entities.statics;
 
 import com.mygame.gfx.Assets;
 import com.mygame.make.Handler;
