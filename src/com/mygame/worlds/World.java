@@ -23,9 +23,10 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		// Temporary entity code!
 		entityManager.addEntity(new Tree(handler, 100, 250));
-		entityManager.addEntity(new Tree(handler, 100, 350));
 		entityManager.addEntity(new Tree(handler, 100, 450));
+		entityManager.addEntity(new Tree(handler, 100, 650));
 
 		loadWorld(path);
 
@@ -85,5 +86,9 @@ public class World {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 }
