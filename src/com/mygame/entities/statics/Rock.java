@@ -1,7 +1,7 @@
-package com.mygame.entities.creatures;
+package com.mygame.entities.statics;
 
-import com.mygame.entities.statics.StaticEntity;
 import com.mygame.gfx.Assets;
+import com.mygame.items.Item;
 import com.mygame.make.Handler;
 import com.mygame.tiles.Tiles;
 
@@ -28,7 +28,7 @@ public class Rock extends StaticEntity {
 
 	@Override
 	public void die() {
-
+		handler.getWorld().getItemManager().addItem(Item.rockItem.createNew((int) x, (int) y));
 	}
 
 	@Override
