@@ -8,27 +8,24 @@ import com.mygame.tiles.Tiles;
  * Created by Administrator on 2018/1/30.
  */
 public abstract class Creature extends Entity {
-	public static final int DEFAULT_HEALTH = 10;
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 64,
 			DEFAULT_CREATURE_HEIGHT = 64;
 
-	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
 
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
 	}
 
 	public void move() {
-//		if (!checkEntityCollisions(xMove, 0f))
+		if (!checkEntityCollisions(xMove, 0f))
 			moveX();
-//		if (!checkEntityCollisions(0f, yMove))
+		if (!checkEntityCollisions(0f, yMove))
 			moveY();
 	}
 
