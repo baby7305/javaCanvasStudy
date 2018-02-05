@@ -60,6 +60,9 @@ public class Player extends Creature {
 		if (attackTimer < attackCooldown)
 			return;
 
+		if (inventory.isActive())
+			return;
+
 		Rectangle cb = getCollisionBounds(0, 0);
 		Rectangle ar = new Rectangle();
 		int arSize = 20;
@@ -104,6 +107,9 @@ public class Player extends Creature {
 		xMove = 0;
 		yMove = 0;
 
+		if (inventory.isActive())
+			return;
+
 		if (handler.getKeyManager().up)
 			yMove = -speed;
 		if (handler.getKeyManager().down)
@@ -117,6 +123,9 @@ public class Player extends Creature {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+	}
+
+	public void postRender(Graphics g) {
 		inventory.render(g);
 	}
 
